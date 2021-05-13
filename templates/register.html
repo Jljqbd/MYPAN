@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生注册</title>
+</head>
+<body>
+    <h1>学生注册</h1>
+    <hr>
+            <li>{{word}}</li>
+{#      <form action="register" method="post">#}
+        <form action="http://127.0.0.1:8000/register/" method="post">
+            <p>账号<input type="text" name="Pno"></p>
+            <p>性别<input type="text" name="Psex"></p>
+            <p>年龄<input type="text" name="Page"></p>
+            <p>密码<input type="password" name="Password"></p>
+            <p><input type="submit" value="提交"></p>
+        </form>
+</body>
+</html>

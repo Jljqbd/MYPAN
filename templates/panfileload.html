@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<title>将要下载的文件</title>
+		<link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../static/css/da.css">
+		<link rel="stylesheet" href="../static/dist/css/AdminLTE.min.css">
+		<link rel="stylesheet" href="../static/dist/css/skins/_all-skins.min.css">
+		<link rel="stylesheet" href="../static/plugins/datepicker/datepicker3.css">
+		<!-- ./wrapper -->
+		<script src="../static/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+		<script src="../static/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../static/dist/js/app.min.js"></script>
+    <script src="../static/dist/js/demo.js"></script>
+    <script type="text/javascript">
+        var array_data = ['0 %']
+        var ws = new WebSocket("ws://127.0.0.1:8000/websocket/");
+        ws.onopen = function(evt) {
+	      console.log("Connection open ...");
+        };
+        ws.onmessage = function(evt) {
+        var data = evt.data;
+        //console.log('message:'+ data );
+        var array_data = data.split(" ");
+        for (var i = 0; i<= array_data.length-1; i++){
+        document.getElementById('video' + i).innerHTML = array_data[i]
+        }
+        };
+        if (ws.readyState == WebSocket.OPEN) {
+      ws.onopen();
+    }
+    </script>
+  </head>
+  <body style="text-align: center;">
+    <div style="overflow-y: auto;">
+      <!--frameset 没有按照预期结果显示-->
+        <table class="table table-condensed">
+          <caption>文件下载列表</caption>
+          <thead>
+            <tr>
+              <th>名称</th>
+              <th>下载时间与进度</th></tr>
+          </thead>
+          <tbody>
+            <script type="text/javascript">
+              var string=""
+              var FileList = {{ file_list|safe }};
+                  for (var i = 0; i <=FileList.length-1; i++){
+                        if(i > array_data.length-1){
+                              string +=`<tr><td> ${FileList[i]} </td><td>0 %</td></tr>`
+                                  }
+                        else{
+                              string +=`<tr><td> ${FileList[i]} </td><td id = "video${i}"></td></tr>`
+                            }
+                    }
+                  document.write(string)
+            </script>
+          </tbody>
+        </table>
+    </div>
+  </body>
+</html>

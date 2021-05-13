@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>管理员登录</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="../static/css/style.css" rel='stylesheet' type='text/css' />
+	</head>
+	
+	<body>
+		<!--User-Login-->
+		<h1>云盘查看系统登录</h1>
+		<div class="avtar">
+			<img src="../static/img/avtar.png" />
+		</div>
+		<p align="center"><font size = "5" color = "red" >{{word}}</font></p>
+		<div class="login-form">
+			<p></p>
+			<form action="login" method="post">
+				<div class="form-text">
+	
+					<input type="text" class="text" placeholder="账户" name="username" /> 
+					<input type="password" placeholder="密码" name="password" />
+				</div>
+				<input type="submit" value="登录">
+			</form>
+		</div>
+		<!--<a href="jump_register">注册</a>-->
+	</body>
+</html>

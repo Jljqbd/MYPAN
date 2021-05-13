@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<title>麦片</title>
+		<link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../static/css/da.css">
+		<link rel="stylesheet" href="../static/dist/css/AdminLTE.min.css">
+		<link rel="stylesheet" href="../static/dist/css/skins/_all-skins.min.css">
+		<link rel="stylesheet" href="../static/plugins/datepicker/datepicker3.css">
+		<!-- ./wrapper -->
+		<script src="../static/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+		<script src="../static/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../static/dist/js/app.min.js"></script>
+		<script src="../static/dist/js/demo.js"></script>
+	</head>
+	<body class="hold-transition skin-blue sidebar-mini">
+		<script>
+			Date.prototype.format = function (fmt) {
+				var o = {
+					"y+": this.getFullYear, //年
+					"M+": this.getMonth() + 1, //月份
+					"d+": this.getDate(), //日
+					"h+": this.getHours(), //小时
+					"m+": this.getMinutes(), //分
+					"s+": this.getSeconds() //秒
+				};
+				if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+				for (var k in o)
+					if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+				return fmt;
+			}
+			setInterval("document.getElementById('dateTime').innerHTML = (new Date()).format('yyyy-MM-dd hh:mm:ss');", 1000);
+		</script>
+		<div class="wrapper">
+			<header class="main-header">
+				<!-- Logo -->
+				<a href="Baidu_login" class="logo"> <span class="logo-mini"><b>麦片</b></span>
+					<span class="logo-lg"><b>麦</b>片</span>
+				</a>
+				<!-- 头部导航开始 -->
+				<nav class="navbar navbar-static-top" role="navigation">
+					<!-- 切换导航 -->
+					<a href="#" class="sidebar-toggle" data-toggle="offcanvas"
+						role="button"><span class="sr-only"></span></a>
+					<div class="navbar-custom-menu">
+						<ul class="nav navbar-nav">
+	
+							<!-- 帐号信息开始 -->
+							<li class="dropdown user user-menu">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+									<img src="../static/dist/img/user2-160x160.jpg" class="user-image" alt="User Image" /> 
+									<span class="hidden-xs">{{username}}</span>
+								</a>
+								<ul class="dropdown-menu">
+									<li class="user-header">
+										<img src="../static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+										<p>
+											当前时间：<small  id="dateTime"></small>
+										</p></li>
+									<li class="user-footer">
+										<div class="pull-left">
+											<a href="" class="btn btn-default btn-flat">帐号设置</a>
+										</div>
+										<div class="pull-right">
+											<a href="http://127.0.0.1:8000" class="btn btn-default btn-flat">退出</a>
+										</div>
+									</li>
+								</ul></li>
+							<!-- 帐号信息结束 -->
+	
+							<!-- 右侧控制栏切换按钮 -->
+							<li>
+								<a href="#" data-toggle="control-sidebar">
+									<i class="fa fa-gears"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+				<!-- 头部导航结束 -->
+			</header>
+			
+			<aside class="main-sidebar">
+				<!-- 左侧菜单导航开始 -->
+				<section class="sidebar">
+	
+					<!-- 用户状态信息 -->
+					<div class="user-panel">
+						<div class="pull-left image">
+							<img src="../static/dist/img/user2-160x160.jpg" class="img-circle"
+								alt="User Image">
+						</div>
+						<div class="pull-left info">
+							<p>{{username}}</p>
+						</div>
+					</div>
+					<!-- 用户状态信息结束 -->
+					<!-- 左侧菜单开始 -->
+					<ul class="sidebar-menu">
+						<!-- 视频播放 -->
+						<li class="treeview">
+							<a href="videolist?username={{username}}&files=0" target="yinruwenj">
+								<i class="fa fa-th"></i>
+								<span>视频播放</span> <i class="fa fa-angle-left pull-right"></i>
+							</a>
+						</li>
+						<!-- 视频播放结束 -->
+	
+						<!-- 文档查看管理 -->
+						<li class="treeview">
+							<a href="textlist?username={{username}}" target="yinruwenj">
+							 	<i class="fa fa-files-o"></i>
+							 	<span>文档查看</span>
+							</a>
+						</li>
+						<!-- 文档查看结束 -->
+	
+						<!-- 文件上传管理 -->
+						<li class="treeview">
+							<a href="jump_upload" target="yinruwenj"> 
+								<i class="fa fa-files-o"></i>
+								<span>文件上传</span>
+							</a>
+						</li>
+						<!-- 文件上传结束 -->	
+						<!-- pandownload主页 -->
+						<li class="treeview">
+							<a href="Baidu_login" target="yinruwenj"> 
+								<i class="fa fa-files-o"></i>
+								<span>网盘导入</span>
+							</a>
+						</li>
+						<!-- pandownloa结束 -->
+						<!-- Bing壁纸 -->
+						<li class="treeview">
+							<a href="BingPicture" target="yinruwenj"> 
+								<i class="fa fa-files-o"></i>
+								<span>Bing 壁纸</span>
+							</a>
+						</li>
+						<!-- Bing壁纸结束-->	
+					</ul>
+					<!-- 左侧菜单结束 -->
+				</section>
+				<!-- 左侧菜单导航结束 -->
+			</aside>
+			<!-- 主页内容 -->
+		<div class="content-wrapper" style="height: 100%;">
+			<iframe id="yinruwenj" src="Baidu_login" name="yinruwenj"
+			style="width: 100%; height: 1600px;" scrolling="no"></iframe>
+		</div>
+		<!-- 底部信息 -->
+		<footer class="main-footer" style="margin-top: -5px;">
+			<div class="pull-right hidden-xs">
+				<b>Version</b> 2020-01
+			</div>
+			<strong>Copyright &copy; 2019-2020
+			</strong> 
+		</footer>
+		</div>
+	</body>
+</html>
